@@ -20,6 +20,9 @@ class PDFController extends Controller
             'default_font_size' => 8,
             'default_font' => 'Arial',
         ]);
+         // Load external CSS file
+    $stylesheet = file_get_contents(resource_path('css/mpdf-styles.css'));
+    $mpdf->WriteHTML($stylesheet, \Mpdf\HTMLParserMode::HEADER_CSS);
         // Set header HTML
         $mpdf->SetHTMLHeader('
             <div class="header">
@@ -54,142 +57,7 @@ class PDFController extends Controller
             </div>
         ');
         $mpdf->WriteHTML('
-            <style>
-                .q-txt{
-                    font-size: 18px;
-                    font-weight: bold;
-                    font-style: italic;
-                }
-                .header {
-                    font-size: 13px; 
-                    line-height: 16px;
-                    color: #000;
-                    vertical-align: center;
-                }
-                .header .fl-rt div{
-                    text-align: right;
-                    margin-bottom: 0;
-                }
-                .wd-50{
-                    width: 50%;
-                }
-                .footer{
-                    font-size: 10px;
-                    line-height: 15px;
-                    color: #000;
-                    text-align: center;
-                }
-                .table-bxd1{
-                    font-size: 11px;
-                    line-height: 14px;
-                    color: #000;
-                }
-                .table-bxd2{
-                    border-collapse: collapse;
-                    font-size: 12px;
-                    line-height: 14px;
-                    color: #000;
-                }
-                .table-bxd3{
-                    border-collapse: collapse;
-                    margin-top: 11px; 
-                    vertical-align: top;
-                    font-size: 10px;
-                    line-height: 18px;
-                    color: #000;
-                } 
-                .table-bxd3 th, .table-bxd3 td{
-                    border: 1px solid #000; 
-                    padding: 3px;
-                }
-                .table-bxd3 th{
-                    font-size: 13px;
-                }
-                .table-bxd3 tr td:nth-child(1), .table-bxd3 tr td:nth-child(3), .table-bxd3 tr td:nth-child(4){
-                   text-align: center;
-                }
-                   
-                .table-bxd3 tr td:nth-child(1){
-                    width: 5%;
-                }
-                .table-bxd3 tr td:nth-child(3), .table-bxd3 tr td:nth-child(4){    
-                    width:10%;
-                }
-                .base-table {
-                    border-collapse: collapse;
-                    border: 1px solid #000;
-                    border-radius: 10px;
-                }
-                .table-sm-box {
-                    border: 1px solid #000;
-                    border-radius: 10px;
-                    margin-bottom: 10px;
-                }
-                .fl-lt{
-                    float: left ;
-                }
-                .fl-rt{
-                    float: right;
-                }
-                   
-                .table-bxd2 td{
-                    padding: 7px 20px;
-                }
-                .table-bxd2 .bold{
-                    font-weight: bold;
-                    border: 1px solid #000;;
-                    border-bottom-width: 0;
-                    border-top-width: 0;
-                    border-left-width: 1;
-                    border-right-width: 0;
-                }
-                .table-bxd2 tr {
-                    border: 1px solid #000;;
-                    border-bottom-width: 0;
-                    border-top-width: 1;
-                    border-left-width: 0;
-                    border-right-width: 0;
-                }
-                .table-bxd2 tr:nth-child(1){
-                    border-top-width: 0;
-                }
-                .table-bxd4-box{
-                    border: 1px solid #000;
-                    border-radius: 10px;
-                    margin-top: 10px;
-                    width: 40%;
-                    float: right;
-                    padding-bottom: 10px;
-                    padding-right: 10px;
-                }
-                .table-bxd4{
-                    vertical-align: middle;
-                    font-size: 10pt;
-                    color: #333;
-                    border: 0px solid #000;
-                    font-size: 11px;
-                    line-height: 14px;
-                    color: #000;
-                }
-                .table-bxd4 tr td:nth-child(1){
-                    padding: 5px 20px 5px 5px;
-                    text-align: right;
-                }
-                .table-bxd4 tr td:nth-child(2){
-                    padding: 2;
-                    text-align: center;
-                }
-                .table-bxd4 tr td:nth-child(3){
-                    font-size: 13px;
-                    line-height: 14px;
-                    padding: 5px 5px 5px 20px;
-                    text-align: left; 
-                }
-                
-               
-
-               
-            </style>
+            
                 <div class="main-sm-box">
             
                     <div class="table-sm-box fl-lt" style="width: 230px;">
